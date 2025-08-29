@@ -1,12 +1,12 @@
 - [x] Tags
 - [x] Users
-- [-] Collections
+- [ ] Collections
 - [x] Avatar
 - [ ] Dashboard
-- [-] Links
-- [-] Logins
+- [ ] Links
+- [ ] Logins
 - [x] Migration
 - [ ] Public
 - [ ] Session - Not supported for now
-- [-] Search
+- [ ] Search
 - [ ] Tokens - Not supported for now
