@@ -1,6 +1,6 @@
 #! -- coding: utf-8 --
 
-from base import Base
+from .base import Base
 from typing import Dict, Any
 
 class Collections(Base):
