@@ -13,7 +13,7 @@ class Logins(Base):
 
     def get_login_configuration(self) -> Dict[str, Any]:
         """
-        Get the login configuration
+        Get the login configuration for the application
 
         Returns:
             Login configuration dictionary

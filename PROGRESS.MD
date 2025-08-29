@@ -5,7 +5,7 @@
 - [x] Avatar
 - [x] Dashboard
 - [x] Links - Missing only bulk update
-- [ ] Logins
+- [x] Logins
 - [x] Migration
 - [ ] Public
 - [ ] Session - Not supported for now
