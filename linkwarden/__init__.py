@@ -13,6 +13,7 @@ from .avatar import Avatar
 from .migration import Migration
 from .links import Links
 from .search import Search
+from .dashboard import Dashboard
 
 class Api:
     """Main API class"""
@@ -24,6 +25,7 @@ class Api:
         self.migration = Migration(api_key, base_url, api_version)
         self.links = Links(api_key, base_url, api_version)
         self.search = Search(api_key, base_url, api_version)
+        self.dashboard = Dashboard(api_key, base_url, api_version)
 
 
 __all__ = [
@@ -35,5 +37,6 @@ __all__ = [
     "Avatar",
     "Migration",
     "Links",
-    "Search"
+    "Search",
+    "Dashboard"
 ]
