@@ -1,9 +1,9 @@
 - [x] Tags
 - [x] Users
-- [ ] Collections
+- [x] Collections
 - [x] Avatar
 - [ ] Dashboard
-- [ ] Links
+- [x] Links - Missing only bulk update
 - [ ] Logins
 - [x] Migration
 - [ ] Public
