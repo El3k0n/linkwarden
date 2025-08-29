@@ -13,12 +13,12 @@ class Links(Base):
         self.links_endpoint = "/links"
 
 
-    def get_link(self, link_id: str) -> Dict[str, Any]:
+    def get_link(self, id: int) -> Dict[str, Any]:
         """
         Get a link by ID
 
         Args:
-            link_id: The ID of the link to get
+            id: The ID of the link to get
 
         Returns:
             Link dictionary
@@ -26,7 +26,7 @@ class Links(Base):
         Raises:
             APIError: If the API request fails
         """
-        return self._make_request("GET", f"{self.links_endpoint}/{link_id}")
+        return self._make_request("GET", f"{self.links_endpoint}/{id}")
     
 
     def create_link(self, name: str = "", url: str = "", type: str = "", 
@@ -66,7 +66,7 @@ class Links(Base):
         return self._make_request("POST", self.links_endpoint, json=payload)
 
 
-    def update_link(self, id: str, **kwargs) -> Dict[str, Any]:
+    def update_link(self, id: int, **kwargs) -> Dict[str, Any]:
         """
         Update a link by ID
 
@@ -93,7 +93,7 @@ class Links(Base):
         return self._make_request("PUT", f"{self.links_endpoint}/{id}", json=kwargs)
 
 
-    def archive_link(self, id: str) -> Dict[str, Any]:
+    def archive_link(self, id: int) -> Dict[str, Any]:
         """
         Archive a link by ID
 
@@ -109,7 +109,7 @@ class Links(Base):
         return self._make_request("PUT", f"{self.links_endpoint}/{id}/archive")
     
 
-    def delete_link(self, id: str) -> Dict[str, Any]:
+    def delete_link(self, id: int) -> Dict[str, Any]:
         """
         Delete a link by ID
 
