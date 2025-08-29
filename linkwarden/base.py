@@ -12,6 +12,7 @@ class APIError(Exception):
 
 
 class Base:
+    """Base class for all API classes"""
     def __init__(self, api_key: str, base_url: str="https://cloud.linkwarden.app", api_version: str="v1"):
         self.api_key = api_key
         self.api_version = api_version

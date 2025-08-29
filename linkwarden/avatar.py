@@ -10,6 +10,7 @@ class Avatar(Base):
         super().__init__(api_key, base_url, api_version)
         self.avatars_endpoint = "/avatar"
 
+
     def get_avatar(self, user_id: str) -> Dict[str, Any]:
         """
         Get an avatar by ID
