@@ -1,8 +1,7 @@
 #! -- coding: utf-8 --
 
 from .base import Base
-from typing import Dict, Any, Optional
-import warnings
+from typing import Dict, Any, Optional, List
 
 class Links(Base):
     """
@@ -37,7 +36,7 @@ class Links(Base):
                     description: Optional[str] = None, 
                     tags: Optional[list[Dict[str, Any]]] = None, 
                     collection: Optional[Dict[str, Any]] = None
-                    ) -> Dict[str, Any]:
+                ) -> Dict[str, Any]:
         """
         Create a link
         #TODO: make more user friendly with wrapper classes for tags and collections or TypedDicts
@@ -67,34 +66,32 @@ class Links(Base):
 
     def update_link(self, 
                     id: int, 
-                    name: Optional[str] = None, 
-                    url: Optional[str] = None, 
+                    name: str, 
+                    url: str, 
+                    collection: Dict[str, Any],
+                    tags: List[Dict[str, Any]] = [],
                     description: Optional[str] = None, 
                     icon: Optional[str] = None,
                     iconWeight: Optional[str] = None,
                     color: Optional[str] = None,
-                    tags: Optional[list[Dict[str, Any]]] = None, 
-                    collection: Optional[Dict[str, Any]] = None,
-                    pinnedBy: Optional[int] = None,
-                    ) -> Dict[str, Any]:
+                    pinnedBy: Optional[List[int]] = None,
+                ) -> Dict[str, Any]:
         """
         Update a link by ID
 
         Args:
-            id: The ID of the link to update
-            Only the provided fields will be updated
+            id (int, required): The ID of the link to update
+            name (str, required): The name of the link
+            url (str, required): The URL of the link
+            collection (Dict[str, Any], required): The collection of the link, must include id, name and ownerId
+            tags (List[Dict[str, Any]], required): The tags of the link
+            description (str, optional): The description of the link
+            icon (str, optional): The icon of the link
+            iconWeight (str, optional): The weight of the icon
+            color (str, optional): The color of the link
+            pinnedBy (List[int], optional): The user who pinned the link
+
             NOTE: some fields are in camelCase because that's what the API expects
-            
-            Updateable fields: 
-                - name 
-                - url
-                - description
-                - icon
-                - iconWeight
-                - color
-                - tags
-                - collection
-                - pinnedBy
 
         Returns:
             Link dictionary
@@ -103,6 +100,8 @@ class Links(Base):
             APIError: If the API request fails
         """
         payload = {k: v for k, v in locals().items() if k != "self" and v is not None}
+
+        print(payload)
         
         return self._make_request("PUT", f"{self.links_endpoint}/{id}", json=payload)
 

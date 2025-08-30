@@ -40,9 +40,14 @@ class Collections(Base):
         return self._make_request("GET", f"{self.collections_endpoint}/{id}")
     
 
-    def create_collection(self, name: str, description: str = "", 
-                            color: str = "", icon: str = "", iconWeight: str = "", 
-                            parentId: int = None) -> Dict[str, Any]:
+    def create_collection(self, 
+                            name: str, 
+                            description: str = None, 
+                            color: str = None, 
+                            icon: str = None, 
+                            iconWeight: str = None, 
+                            parentId: int = None
+                        ) -> Dict[str, Any]:
         """
         Create a collection
 
@@ -60,33 +65,45 @@ class Collections(Base):
         Raises:
             APIError: If the API request fails
         """
-        payload = {
-            "name": name,
-            "description": description,
-            "color": color,
-            "icon": icon,
-            "iconWeight": iconWeight,
-            "parentId": parentId
-        }
+        payload = {k: v for k, v in locals().items() if k != "self" and v is not None}
 
         return self._make_request("POST", self.collections_endpoint, json=payload)
     
 
-    def update_collection(self, id: int, **kwargs) -> Dict[str, Any]:
+    def update_collection(self, 
+                            id: int, 
+                            name: str, 
+                            members: list[Dict[str, Any]] = [],
+                            description: str = None, 
+                            color: str = None, 
+                            icon: str = None, 
+                            iconWeight: str = None, 
+                            parentId: int = None,
+                            isPublic: bool = None
+                        ) -> Dict[str, Any]:
+                        
         """
         Update a collection by ID
 
         Args:
-            id: The ID of the collection to update
-            **kwargs: Fields to update, only the provided fields will be updated
-            Updateable fields: 
-                - name 
-                - description
-                - color
-                - icon
-                - iconWeight
-                - parentId 
-                - isPublic
+            id (int, required): The ID of the collection to update
+            name (str, required): The name of the collection
+            members (List[Dict[str, Any]], required): The members of the collection
+            description (str, optional): The description of the collection
+            color (str, optional): The color of the collection
+            icon (str, optional): The icon of the collection
+            iconWeight (str, optional): The weight of the icon
+            parentId (int, optional): The ID of the parent collection
+            isPublic (bool, optional): Whether the collection is public
+            
+            NOTE: some fields are in camelCase because that's what the API expects
+            
+            The members field is a list of dictionaries with the following keys:
+                - userId (int, required): The ID of the member
+                - canCreate (bool, required): Whether the member can create links
+                - canUpdate (bool, required): Whether the member can update links
+                - canDelete (bool, required): Whether the member can delete links
+
 
         Returns:
             Collection dictionary
@@ -94,7 +111,10 @@ class Collections(Base):
         Raises:
             APIError: If the API request fails
         """
-        return self._make_request("PUT", f"{self.collections_endpoint}/{id}", json=kwargs)
+
+        payload = {k: v for k, v in locals().items() if k != "self" and v is not None}
+
+        return self._make_request("PUT", f"{self.collections_endpoint}/{id}", json=payload)
     
 
     def delete_collection(self, id: int) -> Dict[str, Any]:
