@@ -12,22 +12,23 @@ class Archives(Base):
         super().__init__(api_key, base_url, api_version)
         self.archives_endpoint = "/archives"
 
+
     def get_archive_by_link_id(self, 
                                link_id: int,
                                format: int,
                                preview: bool = False
-                               ) -> Dict[str, Any]:
+                            ) -> Dict[str, Any]:
         """
         Get an archive file by link ID
 
         Args:
-            link_id: The ID of the link to get the archive for
-            format: The format of the archive to get (0 = PNG, 1 = JPEG, 2 = PDF, 3 = JSON, 4 = HTML)
-            preview: Whether to get a preview of the archive
-            NOTE: The formats values are from the API documentation, yet with Postman I wasn't able to get anything but JPEGs
+            link_id (int, required): The ID of the link to get the archive for
+            format (int, required): The format of the archive to get (0 = PNG, 1 = JPEG, 2 = PDF, 3 = JSON, 4 = HTML)
+            preview (bool, optional): Whether to get a preview of the archive
+            NOTE: The formats values are from the API documentation, yet I wasn't able to get anything but JPEGs on my instance
 
         Returns:
-            Archive file
+            Archive binary file
 
         Raises:
             APIError: If the API request fails
@@ -73,9 +74,9 @@ class Archives(Base):
         with open(file_path, 'rb') as file_object:
             files = {
                 'file': (
-                    os.path.basename(file_path),  # Nome file
-                    file_object,                   # File object binario
-                    'application/octet-stream'     # MIME type
+                    os.path.basename(file_path),  
+                    file_object,                   
+                    'application/octet-stream'  
                 )
             }
             
