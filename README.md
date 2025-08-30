@@ -8,7 +8,7 @@ I've had some difficulties understanding the parameters for some endpoints on th
 - [x] Collections
 - [x] Avatar
 - [x] Dashboard
-- [x] Links - Missing only bulk update
+- [x] Links
 - [x] Logins
 - [x] Migration
 - [x] Public
@@ -21,7 +21,7 @@ I've had some difficulties understanding the parameters for some endpoints on th
 ### TODOs
 - [ ] Document response formats in each endpoint docstring
 - [ ] Wrapper objects for links, collections, tags, users
-- [ ] Implement bulk update links
+- [x] Implement bulk update links
 
 ### Usage
 
