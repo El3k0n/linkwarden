@@ -14,3 +14,5 @@
 
 ### TODOs
 - [ ] Document response formats in each endpoint docstring
+- [ ] Wrapper objects for links, collections, tags, users
+- [ ] Implement bulk update links

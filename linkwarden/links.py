@@ -82,6 +82,8 @@ class Links(Base):
         Args:
             id: The ID of the link to update
             Only the provided fields will be updated
+            NOTE: some fields are in camelCase because that's what the API expects
+            
             Updateable fields: 
                 - name 
                 - url
