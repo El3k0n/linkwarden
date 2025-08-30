@@ -2,6 +2,7 @@
 
 from .base import Base
 from typing import Dict, Any
+import requests
 
 class Avatar(Base):
     """Class for managing avatars"""
@@ -19,9 +20,22 @@ class Avatar(Base):
             user_id: The ID of the user to get the avatar for
 
         Returns:
-            Avatar image
+            Binary avatar image
 
         Raises:
             APIError: If the API request fails
         """
-        return self._make_request("GET", f"{self.avatars_endpoint}/{user_id}")
+        #We can't use the _make_request method because the response is binary data
+        url = f"{self.base_url}/{self.avatars_endpoint}/{user_id}"
+
+        try:
+            response = requests.request("GET", url, headers=self.headers)
+            response.raise_for_status()
+            
+            # For avatars, we return binary data instead of JSON
+            return response.content
+            
+        except requests.exceptions.RequestException as e:
+            if hasattr(e, 'response') and e.response is not None:
+                raise self.APIError(f"API request failed: {e}", e.response.status_code)
+            raise self.APIError(f"Network error: {e}")

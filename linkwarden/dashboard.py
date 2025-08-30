@@ -11,6 +11,7 @@ class Dashboard(Base):
         super().__init__(api_key, base_url, api_version)
         self.dashboard_endpoint = "/dashboard"
 
+
     def get_current_user_dashboard(self) -> Dict[str, Any]:
         """
         Get Dashboard data for the user
