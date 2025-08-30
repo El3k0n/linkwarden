@@ -155,7 +155,33 @@ class Links(Base):
         return self._make_request("DELETE", self.links_endpoint, json={"linkIds": ids})
 
 
-    def bulk_update_links(self):
-        warnings.warn("Bulk update links is not implemented yet")
-        #TODO: implement bulk update links
-        return None
+    def bulk_update_links(self, 
+                    links: list[Dict[str, Any]], 
+                    collection_id: int, 
+                    remove_previous_tags: bool = False, 
+                    new_tags: list[Dict[str, Any]] = None,
+                    ) -> Dict[str, Any]:
+        """
+        Bulk update links
+
+        Args:
+            links: List of link objects
+            remove_previous_tags: Whether to remove previous tags
+            collection_id: The ID of the collection to update
+            new_tags: List of tag objects
+
+        Returns:
+            API response
+        
+        Raises:
+            APIError: If the request fails
+        """
+        payload = {
+            "links": links,
+            "removePreviousTags": remove_previous_tags,
+            "newData": {
+                "collectionId": collection_id,
+                "tags": new_tags
+            }
+        }
+        return self._make_request("PUT", self.links_endpoint, json=payload)
