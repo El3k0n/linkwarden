@@ -19,7 +19,7 @@ I've had some difficulties understanding the parameters for some endpoints on th
 - [x] Tokens 
 
 ### TODOs
-- [ ] Document response formats in each endpoint docstring
+- [ ] Check response formats in all the docstrings
 - [ ] Wrapper objects for links, collections, tags, users
 - [x] Implement bulk update links
 
