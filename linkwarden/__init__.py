@@ -14,6 +14,7 @@ from .migration import Migration
 from .links import Links
 from .search import Search
 from .dashboard import Dashboard
+from .public import Public
 
 class Api:
     """Main API class"""
@@ -26,7 +27,7 @@ class Api:
         self.links = Links(api_key, base_url, api_version)
         self.search = Search(api_key, base_url, api_version)
         self.dashboard = Dashboard(api_key, base_url, api_version)
-
+        self.public = Public(api_key, base_url, api_version)
 
 __all__ = [
     "Api",
@@ -38,5 +39,6 @@ __all__ = [
     "Migration",
     "Links",
     "Search",
-    "Dashboard"
+    "Dashboard",
+    "Public"
 ]

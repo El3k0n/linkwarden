@@ -7,7 +7,7 @@
 - [x] Links - Missing only bulk update
 - [x] Logins
 - [x] Migration
-- [ ] Public
+- [x] Public
 - [ ] Session - Not supported for now
 - [ ] Search
 - [ ] Tokens - Not supported for now
