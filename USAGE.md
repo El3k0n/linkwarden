@@ -230,6 +230,14 @@ with open("avatar.png", "wb") as f:
     f.write(avatar_bytes)
 ```
 
+## Search
+```python
+result = api.search.search_links(query="My Search")
+result_links = result['data']['links']
+
+print(f"Found {len(result_links)} results")
+```
+
 ## API Token Management
 
 #### Get all tokens
