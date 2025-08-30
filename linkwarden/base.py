@@ -29,12 +29,21 @@ class Base:
         try:
             response = requests.request(method, url, headers=self.headers, **kwargs)
             response.raise_for_status()
-            result = response.json()
+            content_type = response.headers.get('Content-Type', '')
 
-            if isinstance(result, dict) and "response" in result:
-                return result["response"]
+            if 'application/json' in content_type:
+                result = response.json()
 
-            return result
+                if isinstance(result, dict) and "response" in result:
+                    return result["response"]
+
+                return result
+
+            elif 'text/' in content_type:
+                return response.text
+                
+            else:
+                return response.content
             
         except requests.exceptions.RequestException as e:
             if hasattr(e, 'response') and e.response is not None:
