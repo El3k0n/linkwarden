@@ -1,7 +1,7 @@
 #! -- coding: utf-8 --
 
 from .base import Base
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 
 class Links(Base):
     """
@@ -29,8 +29,13 @@ class Links(Base):
         return self._make_request("GET", f"{self.links_endpoint}/{id}")
     
 
-    def create_link(self, name: str = "", url: str = "", type: str = "", 
-                    description: str = "", tags: list[Dict[str, Any]] = [], collection: Dict[str, Any] = {}
+    def create_link(self, 
+                    name: Optional[str] = None, 
+                    url: Optional[str] = None, 
+                    type: Optional[str] = None, 
+                    description: Optional[str] = None, 
+                    tags: Optional[list[Dict[str, Any]]] = None, 
+                    collection: Optional[Dict[str, Any]] = None
                     ) -> Dict[str, Any]:
         """
         Create a link
@@ -51,28 +56,32 @@ class Links(Base):
         Raises:
             APIError: If the API request fails
         """
-        if not type in ["", "url", "pdf", "image"]:
+        if type and not type in ["url", "pdf", "image"]:
             raise ValueError("Invalid link type")
         
-        payload = {
-            "name": name,
-            "url": url,
-            "type": type,
-            "description": description,
-            "tags": tags,
-            "collection": collection
-        }
+        payload = {k: v for k, v in locals().items() if k != "self" and v is not None}
         
         return self._make_request("POST", self.links_endpoint, json=payload)
 
 
-    def update_link(self, id: int, **kwargs) -> Dict[str, Any]:
+    def update_link(self, 
+                    id: int, 
+                    name: Optional[str] = None, 
+                    url: Optional[str] = None, 
+                    description: Optional[str] = None, 
+                    icon: Optional[str] = None,
+                    iconWeight: Optional[str] = None,
+                    color: Optional[str] = None,
+                    tags: Optional[list[Dict[str, Any]]] = None, 
+                    collection: Optional[Dict[str, Any]] = None,
+                    pinnedBy: Optional[int] = None,
+                    ) -> Dict[str, Any]:
         """
         Update a link by ID
 
         Args:
             id: The ID of the link to update
-            **kwargs: Fields to update, only the provided fields will be updated
+            Only the provided fields will be updated
             Updateable fields: 
                 - name 
                 - url
@@ -90,7 +99,9 @@ class Links(Base):
         Raises:
             APIError: If the API request fails
         """
-        return self._make_request("PUT", f"{self.links_endpoint}/{id}", json=kwargs)
+        payload = {k: v for k, v in locals().items() if k != "self" and v is not None}
+        
+        return self._make_request("PUT", f"{self.links_endpoint}/{id}", json=payload)
 
 
     def archive_link(self, id: int) -> Dict[str, Any]:

@@ -11,7 +11,7 @@ class Avatar(Base):
         self.avatars_endpoint = "/avatar"
 
 
-    def get_avatar(self, user_id: str) -> Dict[str, Any]:
+    def get_avatar(self, user_id: int) -> Dict[str, Any]:
         """
         Get an avatar by ID
 

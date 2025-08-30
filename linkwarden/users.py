@@ -25,7 +25,7 @@ class Users(Base):
         return self._make_request("GET", self.users_endpoint)
 
 
-    def get_user(self, user_id: str) -> Dict[str, Any]:
+    def get_user(self, user_id: int) -> Dict[str, Any]:
         """
         Get a user by ID
         
@@ -73,7 +73,7 @@ class Users(Base):
         return self._make_request("POST", self.users_endpoint, json=payload)
 
         
-    def update_user(self, user_id: str, **kwargs) -> Dict[str, Any]:
+    def update_user(self, user_id: int, **kwargs) -> Dict[str, Any]:
         """
         Update a user
         
@@ -101,7 +101,7 @@ class Users(Base):
         return self._make_request("PUT", f"{self.users_endpoint}/{user_id}", json=kwargs)
 
 
-    def delete_user(self, user_id: str) -> Dict[str, Any]:
+    def delete_user(self, user_id: int) -> Dict[str, Any]:
         """
         Delete a user
         

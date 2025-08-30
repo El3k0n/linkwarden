@@ -22,7 +22,7 @@ class Tags(Base):
         """ 
         return self._make_request("GET", self.tags_endpoint)
 
-    def get_tag(self, tag_id: str) -> Dict[str, Any]:
+    def get_tag(self, tag_id: int) -> Dict[str, Any]:
         """
         Get a tag by ID
 
@@ -37,7 +37,7 @@ class Tags(Base):
         """
         return self._make_request("GET", f"{self.tags_endpoint}/{tag_id}")
     
-    def update_tag(self, tag_id: str, name: str) -> Dict[str, Any]:
+    def update_tag(self, tag_id: int, name: str) -> Dict[str, Any]:
         """
         Update a tag name by ID
 
@@ -53,7 +53,7 @@ class Tags(Base):
         """
         return self._make_request("PUT", f"{self.tags_endpoint}/{tag_id}", json={"name": name})
     
-    def delete_tag(self, tag_id: str) -> Dict[str, Any]:
+    def delete_tag(self, tag_id: int) -> Dict[str, Any]:
         """
         Delete a tag
 
