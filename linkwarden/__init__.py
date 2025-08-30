@@ -28,6 +28,7 @@ class Api:
         self.search = Search(api_key, base_url, api_version)
         self.dashboard = Dashboard(api_key, base_url, api_version)
         self.public = Public(api_key, base_url, api_version)
+        self.tokens = Tokens(api_key, base_url, api_version)
 
 __all__ = [
     "Api",
@@ -40,5 +41,6 @@ __all__ = [
     "Links",
     "Search",
     "Dashboard",
-    "Public"
+    "Public",
+    "Tokens"
 ]
