@@ -15,6 +15,8 @@ from .links import Links
 from .search import Search
 from .dashboard import Dashboard
 from .public import Public
+from .tokens import Tokens
+from .archives import Archives
 
 class Api:
     """Main API class"""
@@ -29,6 +31,8 @@ class Api:
         self.dashboard = Dashboard(api_key, base_url, api_version)
         self.public = Public(api_key, base_url, api_version)
         self.tokens = Tokens(api_key, base_url, api_version)
+        self.archives = Archives(api_key, base_url, api_version)
+
 
 __all__ = [
     "Api",
@@ -42,5 +46,6 @@ __all__ = [
     "Search",
     "Dashboard",
     "Public",
-    "Tokens"
+    "Tokens",
+    "Archives"
 ]

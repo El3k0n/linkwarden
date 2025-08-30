@@ -8,9 +8,11 @@
 - [x] Logins
 - [x] Migration
 - [x] Public
-- [ ] Session - Not supported for now
+- [ ] Auth
+- [x] Archives
+- [ ] Session
 - [ ] Search
-- [ ] Tokens - Not supported for now
+- [x] Tokens 
 
 ### TODOs
 - [ ] Document response formats in each endpoint docstring
