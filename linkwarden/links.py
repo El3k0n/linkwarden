@@ -2,6 +2,7 @@
 
 from .base import Base
 from typing import Dict, Any, Optional
+import warnings
 
 class Links(Base):
     """
@@ -155,5 +156,6 @@ class Links(Base):
 
 
     def bulk_update_links(self):
+        warnings.warn("Bulk update links is not implemented yet")
         #TODO: implement bulk update links
-        pass
+        return None

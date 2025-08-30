@@ -12,10 +12,10 @@ I've had some difficulties understanding the parameters for some endpoints on th
 - [x] Logins
 - [x] Migration
 - [x] Public
-- [ ] Auth
+- [x] Auth
 - [x] Archives
-- [ ] Session
-- [ ] Search
+- [x] Session
+- [x] Search
 - [x] Tokens 
 
 ### TODOs

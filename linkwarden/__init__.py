@@ -17,6 +17,8 @@ from .dashboard import Dashboard
 from .public import Public
 from .tokens import Tokens
 from .archives import Archives
+from .session import Session
+from .auth import Auth
 
 class Api:
     """Main API class"""
@@ -32,6 +34,8 @@ class Api:
         self.public = Public(api_key, base_url, api_version)
         self.tokens = Tokens(api_key, base_url, api_version)
         self.archives = Archives(api_key, base_url, api_version)
+        self.session = Session(api_key, base_url, api_version)
+        self.auth = Auth(api_key, base_url, api_version)
 
 
 __all__ = [
@@ -47,5 +51,7 @@ __all__ = [
     "Dashboard",
     "Public",
     "Tokens",
-    "Archives"
+    "Archives",
+    "Session",
+    "Auth"
 ]
