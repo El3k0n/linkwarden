@@ -2,11 +2,11 @@
 This is a simple Python wrapper for the LinkWarden API, it's still a work in progress, every contribution or suggestion is welcome!
 I've had some difficulties understanding the parameters for some endpoints on the official [Linkwarden Api Documentation](https://docs.linkwarden.app/api/api-introduction), as they're not explained in big detail but often only through a name:type pair.
 
-### Setup and Usage
+## Setup and Usage
 
 For an (almost) complete guide on usage, take a look at [USAGE](USAGE.md)
 
-### Implemented endpoints
+## Implemented endpoints
 - [x] Tags
 - [x] Users
 - [x] Collections
@@ -22,7 +22,7 @@ For an (almost) complete guide on usage, take a look at [USAGE](USAGE.md)
 - [x] Search
 - [x] Tokens 
 
-### TODOs
+## TODOs
 - [ ] Check response formats in all the docstrings
 - [ ] Adapt docstrings "Args" to the Google style
 - [ ] Wrapper objects for links, collections, tags, users
