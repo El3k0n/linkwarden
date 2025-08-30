@@ -31,7 +31,6 @@ class Users(Base):
         
         Args:
             user_id: The user ID to get
-            
         
         Returns:
             User dictionary

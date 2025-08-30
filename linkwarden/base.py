@@ -29,7 +29,13 @@ class Base:
         try:
             response = requests.request(method, url, headers=self.headers, **kwargs)
             response.raise_for_status()
-            return response.json()
+            result = response.json()
+
+            if isinstance(result, dict) and "response" in result:
+                return result["response"]
+
+            return result
+            
         except requests.exceptions.RequestException as e:
             if hasattr(e, 'response') and e.response is not None:
                 raise APIError(f"API request failed: {e}", e.response.status_code)
