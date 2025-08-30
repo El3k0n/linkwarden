@@ -6,6 +6,10 @@ from typing import Dict, Any, Optional
 class Public(Base):
     """
     Class for managing public endpoints
+
+    It's initialized with the API key even though it's not needed because 
+    I'm lazy and don't want to create a new class for this =)
+    If needed, it can safely be initialized with an empty string for the API key
     """
 
     def __init__(self, api_key: str, base_url: str="https://cloud.linkwarden.app", api_version: str="v1"):
