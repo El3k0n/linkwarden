@@ -100,8 +100,6 @@ class Links(Base):
             APIError: If the API request fails
         """
         payload = {k: v for k, v in locals().items() if k != "self" and v is not None}
-
-        print(payload)
         
         return self._make_request("PUT", f"{self.links_endpoint}/{id}", json=payload)
 
