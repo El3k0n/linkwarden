@@ -1,6 +1,5 @@
 # LinkWarden API Wrapper
 This is a simple Python wrapper for the LinkWarden API, it's still a work in progress, every contribution or suggestion is welcome!
-I've had some difficulties understanding the parameters for some endpoints on the official [Linkwarden Api Documentation](https://docs.linkwarden.app/api/api-introduction), as they're not explained in big detail but often only through a name:type pair.
 
 ## Setup and Usage
 
