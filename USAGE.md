@@ -283,12 +283,12 @@ print(f"Response: {import_response}")
 
 ## Archive Management
 
-#### Get archive for link
+#### Get PDF archive for link
 ```python
-archive = api.archives.get_archive_by_link_id(link_id=123, format=1) #Get JPEG archive
-#NOTE: Despite the API supporting 4 different formats, I wasn't able to get anything but JPEGs on my instance. I'm still trying to figure out why
+archive = api.archives.get_archive_by_link_id(link_id=123, format=2) #Get PDF archive
+# Formats: 0 = PNG, 1 = JPEG, 2 = PDF, 3 = JSON, 4 = HTML
 
-with open("archive.jpeg", "wb") as f:
+with open("archive.pdf", "wb") as f:
     f.write(archive)
 ```
 

@@ -15,8 +15,7 @@ class Archives(Base):
 
     def get_archive_by_link_id(self, 
                                link_id: int,
-                               format: int,
-                               preview: bool = False
+                               format: int
                             ) -> Dict[str, Any]:
         """
         Get an archive file by link ID
@@ -24,11 +23,10 @@ class Archives(Base):
         Args:
             link_id (int, required): The ID of the link to get the archive for
             format (int, required): The format of the archive to get (0 = PNG, 1 = JPEG, 2 = PDF, 3 = JSON, 4 = HTML)
-            preview (bool, optional): Whether to get a preview of the archive
-            NOTE: The formats values are from the API documentation, yet I wasn't able to get anything but JPEGs on my instance
+            NOTE: The API also supports a preview parameter, but I still wasn't able to get how it works. When I pass it, it only returns JPEGs
 
         Returns:
-            Archive binary file
+            Archive in the selected format
 
         Raises:
             APIError: If the API request fails
@@ -37,14 +35,13 @@ class Archives(Base):
         if format not in [0, 1, 2, 3, 4]:
             raise ValueError("Invalid format. Valid formats are: 0 = PNG, 1 = JPEG, 2 = PDF, 3 = JSON, 4 = HTML")
         
-        return self._make_request("GET", f"{self.archives_endpoint}/{link_id}", params={"format": format, "preview": preview})
+        return self._make_request("GET", f"{self.archives_endpoint}/{link_id}", params={"format": format})
     
 
     def upload_file_to_archive(self, 
                                link_id: int,
                                file_path: str,
-                               format: int,
-                               preview: bool = False
+                               format: int
                                ) -> Dict[str, Any]:
         """
         Upload a file to an archive providing file path
@@ -53,7 +50,6 @@ class Archives(Base):
             link_id: The ID of the link to upload the file to
             file_path: The path to the file to upload
             format: The format of the file to upload (0 = PNG, 1 = JPEG, 2 = PDF)
-            preview: Whether to get a preview of the archive
 
         Returns:
             Archive file
@@ -81,8 +77,6 @@ class Archives(Base):
             }
             
             params = {"format": format}
-            if preview:
-                params["preview"] = preview
             
             return self._make_request("POST", f"{self.archives_endpoint}/{link_id}", files=files, params=params)
         
