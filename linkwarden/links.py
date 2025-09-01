@@ -32,10 +32,10 @@ class Links(Base):
     def get_links(self) -> List[Dict[str, Any]]:
         """
         Get all links for the current user
-        NOTE: This endpoint is undocumented in the official API docs
+        NOTE: This endpoint is deprecated in favor of the search endpoint
 
         Returns:
-            List of link dictionaries
+            List of link dictionaries, with optional filtering and sorting options.
 
         Raises:
             APIError: If the API request fails
