@@ -27,6 +27,20 @@ class Links(Base):
             APIError: If the API request fails
         """
         return self._make_request("GET", f"{self.links_endpoint}/{id}")
+
+    
+    def get_links(self) -> List[Dict[str, Any]]:
+        """
+        Get all links for the current user
+        NOTE: This endpoint is undocumented in the official API docs
+
+        Returns:
+            List of link dictionaries
+
+        Raises:
+            APIError: If the API request fails
+        """
+        return self._make_request("GET", self.links_endpoint)
     
 
     def create_link(self, 
