@@ -30,7 +30,6 @@ from linkwarden import Api
 api = Api(api_key="your-api-key-here")
 
 #If using a self-hosted instance
-
 api = Api(
     api_key="your-api-key-here",
     base_url="http://linkwarden.yourdomain.com"
@@ -39,6 +38,13 @@ api = Api(
 ```
 
 ## Link Management
+
+#### Get all links
+```python
+#Get all the links for the current user
+#NOTE: Endpoint deprecated in favor of search.search_links
+links = api.links.get_links()
+```
 
 #### Get a specific link
 ```python
